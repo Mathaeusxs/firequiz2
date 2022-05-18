@@ -5,7 +5,16 @@
     "module": "commonjs",
     "types": ["node"],
     "emitDecoratorMetadata": true,
-    "target": "es2015"
+    "target": "es2015",
+    "paths": {
+      "@environment": ["apps/api/src/environments/environment"],
+      "@api/guards/*": ["apps/api/src/app/guards/*"],
+      "@api/helpers/*": ["apps/api/src/app/helpers/*"],
+      "@api/shared/*": ["apps/api/src/app/shared/*"],
+      "@api/endpoints/*": ["apps/api/src/app/endpoints/*"],
+      "@libs/api-interfaces/*": ["libs/api-interfaces/src/*"]
+    },
+    "allowSyntheticDefaultImports": true
   },
   "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"],
   "include": ["**/*.ts"]

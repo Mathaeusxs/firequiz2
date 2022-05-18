@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@firequiz2/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@libs/api-interfaces/*": ["libs/api-interfaces/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
