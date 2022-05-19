@@ -8,23 +8,21 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Answers } from "./Answers";
-import { Categories } from "./Categories";
-import { Disciplines } from "./Disciplines";
+import { Quiz } from "./Quiz";
 import { Users } from "./Users";
 
-@Index("fk_questions_categories1_idx", ["categoriesId"], {})
-@Index("fk_questions_disciplines1_idx", ["disciplinesId"], {})
 @Index("fk_questions_users1_idx", ["modUserId"], {})
+@Index("fk_questions_quiz1_idx", ["quizId"], {})
 @Entity("questions", { schema: "firequiz" })
 export class Questions {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
 
-  @Column("int", { name: "categories_id" })
-  categoriesId: number;
+  @Column("int", { name: "quiz_id" })
+  quizId: number;
 
-  @Column("int", { name: "disciplines_id" })
-  disciplinesId: number;
+  @Column("tinyint", { name: "active", nullable: true, width: 1 })
+  active: boolean | null;
 
   @Column("text", { name: "question" })
   question: string;
@@ -47,19 +45,12 @@ export class Questions {
   @OneToMany(() => Answers, (answers) => answers.questions)
   answers: Answers[];
 
-  @ManyToOne(() => Categories, (categories) => categories.questions, {
-    onDelete: "RESTRICT",
-    onUpdate: "CASCADE",
+  @ManyToOne(() => Quiz, (quiz) => quiz.questions, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
   })
-  @JoinColumn([{ name: "categories_id", referencedColumnName: "id" }])
-  categories: Categories;
-
-  @ManyToOne(() => Disciplines, (disciplines) => disciplines.questions, {
-    onDelete: "RESTRICT",
-    onUpdate: "CASCADE",
-  })
-  @JoinColumn([{ name: "disciplines_id", referencedColumnName: "id" }])
-  disciplines: Disciplines;
+  @JoinColumn([{ name: "quiz_id", referencedColumnName: "id" }])
+  quiz: Quiz;
 
   @ManyToOne(() => Users, (users) => users.questions, {
     onDelete: "SET NULL",

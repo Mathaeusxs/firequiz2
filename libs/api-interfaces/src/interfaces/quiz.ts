@@ -1,6 +1,7 @@
-import { GeneratedQuestion } from './questions';
+// import { GeneratedQuestion } from './questions';
 import { Categories } from "./categories";
 import { Disciplines } from "./disciplines";
+import { DbQuiz } from '../db-entities';
 
 export interface QuizParams {
   categorie: Categories,
@@ -13,12 +14,13 @@ export interface QuizParams {
   countdown?: number
 };
 
+/*
 export interface Quiz {
   params: QuizParams;
   questions: GeneratedQuestion[];
   currentIndex: number,
   points: number,
-};
+};*/
 
 export interface QuickParams {
   num_questions: number;
@@ -30,3 +32,19 @@ export interface QuickParams {
   },
   countdown: number;
 };
+
+
+export interface Quiz extends DbQuiz {
+  params: QuizParams;
+  currentIndex: number,
+  points: number,
+}
+
+export const DefaultQuestions: Partial<Quiz> = {
+  id: null,
+  name: null,
+  params: null,
+  currentIndex: 0,
+  points: 0,
+  active: true
+}

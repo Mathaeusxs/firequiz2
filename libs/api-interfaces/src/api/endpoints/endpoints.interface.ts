@@ -4,4 +4,5 @@ export enum ApiEndpoints {
   "Disciplines" = "disciplines",
   "Questions" = "questions",
   "Answers" = "answers",
+  "Quizzes" = "quizzes",
 }

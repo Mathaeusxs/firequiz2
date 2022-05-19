@@ -11,6 +11,7 @@ import { Answers } from "./Answers";
 import { Categories } from "./Categories";
 import { Disciplines } from "./Disciplines";
 import { Questions } from "./Questions";
+import { Quiz } from "./Quiz";
 import { ResetTokens } from "./ResetTokens";
 
 @Index("username_UNIQUE", ["username"], { unique: true })
@@ -61,6 +62,9 @@ export class Users {
 
   @OneToMany(() => Questions, (questions) => questions.modUser)
   questions: Questions[];
+
+  @OneToMany(() => Quiz, (quiz) => quiz.modUser)
+  quizzes: Quiz[];
 
   @OneToMany(() => ResetTokens, (resetTokens) => resetTokens.users)
   resetTokens: ResetTokens[];

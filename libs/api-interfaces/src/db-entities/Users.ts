@@ -11,6 +11,7 @@ import { DbAnswers } from "./Answers";
 import { DbCategories } from "./Categories";
 import { DbDisciplines } from "./Disciplines";
 import { DbQuestions } from "./Questions";
+import { DbQuiz } from "./Quiz";
 import { DbResetTokens } from "./ResetTokens";
 
 @Index("username_UNIQUE", ["username"], { unique: true })
@@ -74,4 +75,7 @@ export class DbUsers {
 
   @OneToMany(() => DbUsers, (users) => users.modUser)
   users: DbUsers[];
+
+  @OneToMany(() => DbQuiz, (quiz) => quiz.modUser)
+  quizzes: DbQuiz[];
 }

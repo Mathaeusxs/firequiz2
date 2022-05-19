@@ -4,3 +4,4 @@ export * from './Disciplines';
 export * from './Questions';
 export * from './ResetTokens';
 export * from './Users';
+export * from './Quiz';

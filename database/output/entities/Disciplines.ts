@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Users } from "./Users";
-import { Questions } from "./Questions";
+import { Quiz } from "./Quiz";
 
 @Index("fk_diciplines_users1_idx", ["modUserId"], {})
 @Entity("disciplines", { schema: "firequiz" })
@@ -41,6 +41,6 @@ export class Disciplines {
   @JoinColumn([{ name: "mod_user_id", referencedColumnName: "id" }])
   modUser: Users;
 
-  @OneToMany(() => Questions, (questions) => questions.disciplines)
-  questions: Questions[];
+  @OneToMany(() => Quiz, (quiz) => quiz.disciplines)
+  quizzes: Quiz[];
 }

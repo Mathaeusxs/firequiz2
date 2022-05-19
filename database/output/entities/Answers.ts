@@ -6,13 +6,13 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { DbQuestions } from "./Questions";
-import { DbUsers } from "./Users";
+import { Questions } from "./Questions";
+import { Users } from "./Users";
 
 @Index("fk_answers_questions1_idx", ["questionsId"], {})
 @Index("fk_answers_users1_idx", ["modUserId"], {})
 @Entity("answers", { schema: "firequiz" })
-export class DbAnswers {
+export class Answers {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
 
@@ -22,7 +22,7 @@ export class DbAnswers {
   @Column("text", { name: "answer" })
   answer: string;
 
-  @Column("boolean", { name: "correct", nullable: true })
+  @Column("tinyint", { name: "correct", nullable: true, width: 1 })
   correct: boolean | null;
 
   @Column("datetime", { name: "created", nullable: true })
@@ -34,17 +34,17 @@ export class DbAnswers {
   @Column("int", { name: "mod_user_id", nullable: true })
   modUserId: number | null;
 
-  @ManyToOne(() => DbQuestions, (questions) => questions.answers, {
+  @ManyToOne(() => Questions, (questions) => questions.answers, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "questions_id", referencedColumnName: "id" }])
-  questions: DbQuestions;
+  questions: Questions;
 
-  @ManyToOne(() => DbUsers, (users) => users.answers, {
+  @ManyToOne(() => Users, (users) => users.answers, {
     onDelete: "SET NULL",
     onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "mod_user_id", referencedColumnName: "id" }])
-  modUser: DbUsers;
+  modUser: Users;
 }

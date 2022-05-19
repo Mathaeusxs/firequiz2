@@ -67,7 +67,7 @@ export class QuestionsService {
         [field]: value
       }
     })
-    if (!item && exist) throw new NotFoundException(`Could not find discipline by ${field}: ${value}`);
+    if (!item && exist) throw new NotFoundException(`Could not find by ${field}: ${value}`);
     return item;
   }
 }

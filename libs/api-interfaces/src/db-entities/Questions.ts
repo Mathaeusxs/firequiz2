@@ -8,8 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { DbAnswers } from "./Answers";
-import { DbCategories } from "./Categories";
-import { DbDisciplines } from "./Disciplines";
+import { DbQuiz } from "./Quiz";
 import { DbUsers } from "./Users";
 
 @Index("fk_questions_categories1_idx", ["categoriesId"], {})
@@ -50,19 +49,12 @@ export class DbQuestions {
   @OneToMany(() => DbAnswers, (answers) => answers.questions,  { cascade: ['insert', 'update'] })
   answers: DbAnswers[];
 
-  @ManyToOne(() => DbCategories, (categories) => categories.questions, {
+  @ManyToOne(() => DbQuiz, (quiz) => quiz.questions, {
     onDelete: "RESTRICT",
     onUpdate: "CASCADE",
   })
-  @JoinColumn([{ name: "categories_id", referencedColumnName: "id" }])
-  categories: DbCategories;
-
-  @ManyToOne(() => DbDisciplines, (disciplines) => disciplines.questions, {
-    onDelete: "RESTRICT",
-    onUpdate: "CASCADE",
-  })
-  @JoinColumn([{ name: "disciplines_id", referencedColumnName: "id" }])
-  disciplines: DbDisciplines;
+  @JoinColumn([{ name: "quiz_id", referencedColumnName: "id" }])
+  quiz: DbQuiz;
 
   @ManyToOne(() => DbUsers, (users) => users.questions, {
     onDelete: "SET NULL",

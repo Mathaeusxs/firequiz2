@@ -133,7 +133,7 @@ export class UsersService {
     const user = await this.usersRepository.findOne({
       [field]: value
     });
-    if (!user && exist) throw new NotFoundException(`Could not find User by ${field}: ${value}`);
+    if (!user && exist) throw new NotFoundException(`Could not find by ${field}: ${value}`);
     return user;
   }
 }
