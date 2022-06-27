@@ -1,0 +1,27 @@
+
+.login-wrapper {
+
+  // background: url("/assets/images/login/top-header.svg") top center no-repeat, url("/assets/images/login/bottom.svg") bottom center no-repeat;
+
+  .container {
+    padding-top: 16rem;
+  }
+
+  .header-text {
+    color: #7e7e7e;
+    font-family: 'Raleway',sans-serif;
+    font-size: 62px;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+   }
+
+   .title-text {
+      color: #ffffff;
+      font-family: 'Raleway',sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      text-align: center;
+      text-transform: uppercase;
+   }
+}

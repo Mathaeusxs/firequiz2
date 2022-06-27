@@ -1,4 +1,4 @@
-import * as dbTablesIndex from '@libs/api-interfaces/db-entities/index';
+import * as dbTablesIndex from '@libs/app-entities';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 // Get DynamicList Of Entities for import

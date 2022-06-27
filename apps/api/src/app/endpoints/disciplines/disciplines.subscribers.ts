@@ -6,7 +6,7 @@ import {
   UpdateEvent,
 } from 'typeorm';
 
-import { DbDisciplines } from '@libs/api-interfaces/db-entities';
+import { DbDisciplines } from '@libs/app-entities';
 
 @EventSubscriber()
 export class DbDisciplinesSubscriber implements EntitySubscriberInterface<DbDisciplines> {

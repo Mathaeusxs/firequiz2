@@ -2,7 +2,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { DbUsers, DbResetTokens } from '@libs/api-interfaces/db-entities';
+import { DbUsers, DbResetTokens } from '@libs/app-entities';
 
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';

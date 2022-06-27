@@ -3,7 +3,21 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "types": [],
-    "target": "ES2017"
+    "target": "ES2017",
+    "paths": {
+      "@environment": ["apps/frontend/src/environments/environment"],
+      "@app/core/*": ["apps/frontend/src/app/core/*"],
+      "@app/layouts/*": ["apps/frontend/src/app/layouts/*"],
+      "@app/guards/*": ["apps/frontend/src/app/guards/*"],
+      "@app/helpers/*": ["apps/frontend/src/app/helpers/*"],
+      "@app/services/*": ["apps/frontend/src/app/services/*"],
+      "@app/shared/*": ["apps/frontend/src/app/shared/*"],
+      "@libs/app-entities": ["libs/app-entities/src/index.ts"],
+      "@libs/app-interfaces/*": ["libs/app-interfaces/src/*"]
+    },
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
   "include": ["src/**/*.d.ts"],

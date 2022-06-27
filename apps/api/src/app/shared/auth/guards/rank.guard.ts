@@ -1,5 +1,5 @@
 import { ExecutionContext, CanActivate, mixin } from "@nestjs/common";
-import { UserRanks } from "@libs/api-interfaces/index";
+import { UserRanks } from "@libs/app-interfaces/data";
 
 //Use in controler as @UseGuards(RankGuard(UserRanks.SuperAdmin))
 export const RankGuard = (rank:UserRanks) => {

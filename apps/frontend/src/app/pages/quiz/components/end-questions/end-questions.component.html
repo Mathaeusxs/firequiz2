@@ -1,0 +1,8 @@
+<div class="pb-2"
+  *ngFor="let question of questions; let index = index">
+  <app-question [question]="question"
+    [currentIndex]="index"
+    [confirmed]="true"
+  ></app-question>
+  <hr>
+</div>

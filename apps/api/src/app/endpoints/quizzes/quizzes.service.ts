@@ -1,10 +1,9 @@
-
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MoreThan, Repository } from 'typeorm';
 
-import { DbQuiz, Quiz } from '@libs/api-interfaces/index';
-
+import { DbQuiz } from '@libs/app-entities';
+import { Quiz } from '@libs/app-interfaces/data';
 @Injectable()
 export class QuizzesService {
 
@@ -13,27 +12,22 @@ export class QuizzesService {
   ) {
   }
 
-  /** GET LIST / ITEM **/
-  async getAll() {
-    return await this.qRepository.find();
+  get repository() {
+    return this.qRepository;
   }
 
-  async getSingleById(id: number) {
-    return await this.qRepository.findOne({
-      where: { id }
+  /** GET LIST / ITEM **/
+  async getAll(modUser = false) {
+    return await this.qRepository.find({
+      relations: this.setRelations(['categories', 'disciplines'], { modUser })
     });
   }
 
-  async checkModified(id: number, modDate: Date){
-    return await this.qRepository.findOne(
-      {
-        where:{
-          id,
-          modified: MoreThan(modDate)
-        },
-        relations:['modUser']
-      }
-    )
+  async getSingleById(id: number, modUser = false) {
+    return await this.qRepository.findOne({
+      where: { id },
+      relations: this.setRelations(['categories', 'disciplines'], { modUser })
+    });
   }
 
   // CREATE / EDIT
@@ -69,5 +63,10 @@ export class QuizzesService {
     })
     if (!item && exist) throw new NotFoundException(`Could not find by ${field}: ${value}`);
     return item;
+  }
+
+  private setRelations(relations: string[] = [], props: { [key in string]: boolean }) {
+    if (props.modUser) relations.push('modUser')
+    return relations;
   }
 }

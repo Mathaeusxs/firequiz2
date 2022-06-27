@@ -1,6 +1,12 @@
 {
   "/api": {
-    "target": "http://localhost:3333",
-    "secure": false
+    "target": "http://localhost:4701",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/api_ws": {
+    "target": "http://localhost:4702",
+    "secure": false,
+    "ws": true
   }
 }

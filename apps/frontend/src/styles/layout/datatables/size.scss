@@ -1,0 +1,11 @@
+.p-datatable.p-datatable-xsm .p-datatable-tbody > tr > td {
+  padding: 0.1rem 0.1rem;
+}
+.p-datatable.p-datatable-xsm .p-datatable-thead > tr > th {
+  padding: 0.1rem 0.1rem;
+}
+
+.p-datatable-resizable.p-datatable-resizable-fit .p-datatable-tbody>tr>td {
+  overflow: hidden;
+  white-space: unset;
+}

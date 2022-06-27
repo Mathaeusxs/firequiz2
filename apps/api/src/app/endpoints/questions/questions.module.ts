@@ -2,7 +2,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { DbQuestions } from '@libs/api-interfaces/db-entities';
+import { DbAnswers, DbQuestions } from '@libs/app-entities';
 
 import { AddModUserInterceptor } from '@api/guards/add-moduser.interceptor';
 
@@ -12,7 +12,7 @@ import { DbQuestionsSubscriber } from './questions.subscribers';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([DbQuestions]),
+    TypeOrmModule.forFeature([DbQuestions, DbAnswers]),
   ],
   controllers: [
     QuestionsController,

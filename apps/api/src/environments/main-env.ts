@@ -6,6 +6,6 @@ export const mainEnv = {
 
   adminUser: {
     id: 1,
-    name: 'kadmn',
+    name: 'matejsot',
   },
 }

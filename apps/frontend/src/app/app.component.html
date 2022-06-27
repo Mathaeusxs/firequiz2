@@ -1,9 +1,35 @@
-<div style="text-align: center">
-  <h1>Welcome to frontend!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-    alt="Nx - Smart, Fast and Extensible Build System"
-  />
+<div class='container'>
+
+  <header>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+      <a [routerLink]="'/quiz'" class="d-flex align-items-center text-dark text-decoration-none me-1">
+        <span class="fs-4">Domov</span>
+      </a>
+      <a [routerLink]="'login'" class="d-flex align-items-center text-dark text-decoration-none me-1"
+        *ngIf="!mainService.currentUser">
+        <span class="fs-4">Login</span>
+      </a>
+      <ng-container *ngIf="mainService.currentUser">
+        <a [routerLink]="'settings'" class="d-flex align-items-center text-dark text-decoration-none me-1">
+          <span class="fs-4">Settings</span>
+        </a>
+        <a [routerLink]="'login'" class="d-flex align-items-center text-dark text-decoration-none me-1">
+          <span class="fs-4">Logout</span>
+        </a>
+      </ng-container>
+
+    </div>
+  </header>
+
+  <div class="py-3">
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <footer class="pt-4 my-md-5 pt-md-5 border-top">
+
+  </footer>
+
 </div>
-<div>Message: {{ hello$ | async | json }}</div>
+

@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { jwtConstants } from '../constants';
-import { TokenPayload, User } from '@libs/api-interfaces/index';
+import { TokenPayload, User } from '@libs/app-interfaces/data';
 
 import { UsersService } from '@api/endpoints/users/users.service';
 

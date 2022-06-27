@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+
+      <div class="card-header border-0">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="mb-0">{{ 'users.nameMulti' | translate }}</h3>
+          </div>
+        </div>
+      </div>
+
+      <p-table #dt [value]="(users | async)?.data"
+
+        styleClass="p-datatable-sm p-datatable-settings p-datatable-striped "
+        [dataKey]="dtSettings.dataKey"
+        [rowHover]="dtSettings.rowHover"
+        [showCurrentPageReport]="dtSettings.showCurrentPageReport"
+        [paginator]="dtSettings.paginator"
+        [rows]="dtSettings.rows"
+        [rowsPerPageOptions]="dtSettings.rowsPerPageOptions"
+        [globalFilterFields]="dtSettings.globalFilterFields"
+        [resizableColumns]="dtSettings.resizableColumns">
+
+        <ng-template pTemplate="caption">
+          <div class="table-header">
+            <button pButton pRipple label="{{ 'form.create' | translate }}" icon="pi pi-plus" class="p-button-success p-mr-2 w-auto" (click)="openNew()"></button>
+            <span class="p-input-icon-left w-auto">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="dt.filterGlobal(getSearchValue($event), 'contains')" placeholder="{{ 'form.search' | translate }}" />
+            </span>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="table-crud"></th>
+            <th pSortableColumn="id" pResizableColumn>
+              {{ 'form.fields.id' | translate }}
+              <p-sortIcon field="id"></p-sortIcon>
+            </th>
+            <th pSortableColumn="name" pResizableColumn>
+              {{ 'form.fields.name' | translate }}
+              <p-sortIcon field="name"></p-sortIcon>
+              <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+            </th>
+            <th pSortableColumn="active" pResizableColumn>
+              {{ 'form.fields.active' | translate }}
+              <p-sortIcon field="active"></p-sortIcon>
+              <p-columnFilter type="text" field="active" display="menu"></p-columnFilter>
+            </th>
+            <th pSortableColumn="username" pResizableColumn>
+              {{ 'users.form.fields.username' | translate }}
+              <p-sortIcon field="username"></p-sortIcon>
+              <p-columnFilter type="text" field="username" display="menu"></p-columnFilter>
+            </th>
+            <th pSortableColumn="email" pResizableColumn>
+              {{ 'users.form.fields.email' | translate }}
+              <p-sortIcon field="email"></p-sortIcon>
+              <p-columnFilter type="text" field="email" display="menu"></p-columnFilter>
+            </th>
+            <th pSortableColumn="rank" pResizableColumn>
+              {{ 'users.form.fields.rank' | translate }}
+              <p-sortIcon field="rank"></p-sortIcon>
+              <p-columnFilter type="text" field="rank" display="menu"></p-columnFilter>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-item>
+          <tr [pSelectableRow]="item">
+            <td class="text-nowrap">
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-sm p-button-success me-2"
+              (click)="editItem(item)" [disabled]="(mainService.currentUser.rank < UserRanks.Admin && item.rank != mainService.currentUser.rank)|| (item.rank >= mainService.currentUser.rank && item.id != mainService.currentUser.id)"></button>
+              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning me-2"
+              (click)="deleteItem(item)" [disabled]="mainService.currentUser.rank < UserRanks.Admin || item.id == mainService.currentUser.id || item.rank >= mainService.currentUser.rank"></button>
+            </td>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td><app-cross-tick [value]="item.active"></app-cross-tick></td>
+            <td>{{item.username}}</td>
+            <td>{{item.email}}</td>
+            <td>{{ 'users.ranks.'+item.rank | translate }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </div>
+  </div>
+</div>
+
+<!-- Edit Dialog -->
+<app-settings-users-edit #editComponent
+  [dialogMode]="true" (refresh)="refreshUsers($event)"
+  (save)="startSave($event)"></app-settings-users-edit>
+

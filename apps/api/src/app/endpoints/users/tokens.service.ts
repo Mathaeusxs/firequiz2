@@ -2,8 +2,8 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { RefreshTokenPayload, User } from '@libs/api-interfaces/index';
-import { DbResetTokens } from '@libs/api-interfaces/db-entities';
+import { RefreshTokenPayload, User } from '@libs/app-interfaces/data';
+import { DbResetTokens } from '@libs/app-entities';
 
 @Injectable()
 export class TokensService {
@@ -16,10 +16,11 @@ export class TokensService {
   /** GET LIST / ITEM **/
 
   async getUserRefreshToken(user: User, payload: RefreshTokenPayload) {
-
     const token = await this.tokenRepository.find({
-      token: payload.token,
-      usersId: user.id
+      where: {
+        token: payload.token,
+        usersId: user.id
+      }
     });
 
     if (token.length === 0) throw new UnauthorizedException('User refresh token don\'t exist!');

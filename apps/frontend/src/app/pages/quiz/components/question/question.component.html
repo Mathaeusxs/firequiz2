@@ -1,0 +1,19 @@
+<div *ngIf="question">
+  <p class="card-text fw-bold">
+    <span *ngIf="showQNumber">{{ currentIndex + 1 }}.  </span>
+    {{ question.question }}
+  </p>
+
+  <ol class="list-group list-group-flush list-group-numbered">
+    <li class="list-group-item cursor-pointer"
+      *ngFor="let answer of question.answers; let index = index"
+        [ngClass]="{
+          'active': question.userAnswerId === answer.id && !confirmed,
+          'bg-danger': (!question.userAnswerCorrect && confirmed && question.userAnswerId === answer.id),
+          'bg-success': (question.userAnswerCorrect && confirmed && question.userAnswerId === answer.id)
+            || (confirmed && question.userAnswerId != answer.id && answer.correct)}"
+        (click)="selectAnswer(answer.id)">
+      {{ answer.answer }}
+    </li>
+  </ol>
+</div>

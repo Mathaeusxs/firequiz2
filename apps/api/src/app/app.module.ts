@@ -17,6 +17,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DisciplinesModule } from './endpoints/disciplines/disciplines.module';
 import { CategoriesModule } from './endpoints/categories/categories.module';
+import { QuizzesModule } from './endpoints/quizzes/quizzes.module';
+import { QuestionsModule } from './endpoints/questions/questions.module';
+import { ImporterModule } from './importer/importer.module';
+import { DashboardModule } from './endpoints/dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -24,7 +28,11 @@ import { CategoriesModule } from './endpoints/categories/categories.module';
     AuthModule,
     UsersModule,
     CategoriesModule,
-    DisciplinesModule
+    DisciplinesModule,
+    QuizzesModule,
+    QuestionsModule,
+    ImporterModule,
+    DashboardModule
   ],
   controllers: [AppController],
   providers: [

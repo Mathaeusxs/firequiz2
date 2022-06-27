@@ -1,0 +1,55 @@
+<!-- Bootstrap Layout -->
+<div class="form-group">
+
+  <div class="" *ngIf='inputContent.children.length === 0'
+    [ngClass]="{
+      'form-floating': floatingLabel
+    }"><!--
+      'text-success': control.valid && control.touched,
+      'text-danger': control.invalid && control.touched,
+    -->
+
+    <label *ngIf="!floatingLabel" [for]="controlID" class="form-label">
+      {{ label }}
+      <span class="text-danger" *ngIf="required">*</span>
+    </label>
+
+    <input #inputField
+      [type]="type"
+      [id]="controlID"
+      [name]="controlID"
+      [formControl]="control"
+      [placeholder]="placeholder"
+      class="form-control"
+      [ngClass]="{
+        'is-valid': control.valid && control.touched,
+        'is-invalid': control.invalid && control.touched
+      }">
+
+    <label *ngIf="floatingLabel" [for]="controlID" class="form-label">
+      {{ label }}
+      <span class="text-danger" *ngIf="required">*</span>
+    </label>
+
+    <div *ngIf="helpText" class="form-text">{{ helpText }}</div>
+
+  </div>
+
+  <label *ngIf="inputContent.children.length === 1 && label" [for]="controlID">
+    {{ label }}
+    <span class="text-danger" *ngIf="required">*</span>
+  </label>
+
+  <div class='input-content' #inputContent
+    [ngClass]="{'is-valid': control.valid && control.touched,
+      'is-invalid': control.invalid && control.touched}">
+      <ng-content select='[inputContent]'></ng-content>
+  </div>
+
+  <div *ngIf="control.invalid && control.touched"
+    class='invalid-feedback'>
+    <ng-container *ngFor='let error of control.errors | keyvalue'>
+      {{ getErrorText(error.key) }}
+    </ng-container>
+  </div>
+</div>

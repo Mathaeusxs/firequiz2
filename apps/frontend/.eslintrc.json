@@ -13,7 +13,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "firequiz2",
+            "prefix": ["app", "fq", "firequiz", "firequiz2"],
             "style": "camelCase"
           }
         ],
@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "firequiz2",
+            "prefix": ["app", "fq", "firequiz", "firequiz2"],
             "style": "kebab-case"
           }
         ]

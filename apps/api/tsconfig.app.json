@@ -12,7 +12,8 @@
       "@api/helpers/*": ["apps/api/src/app/helpers/*"],
       "@api/shared/*": ["apps/api/src/app/shared/*"],
       "@api/endpoints/*": ["apps/api/src/app/endpoints/*"],
-      "@libs/api-interfaces/*": ["libs/api-interfaces/src/*"]
+      "@libs/app-entities": ["libs/app-entities/src/index.ts"],
+      "@libs/app-interfaces/*": ["libs/app-interfaces/src/*"]
     },
     "allowSyntheticDefaultImports": true
   },

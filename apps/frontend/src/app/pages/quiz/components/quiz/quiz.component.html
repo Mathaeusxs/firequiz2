@@ -1,0 +1,100 @@
+
+<div class="p-3 pb-md-4 mx-auto text-center">
+  <h3 class="text-capitalize">
+    <span *ngIf="quiz && !quickData">{{ quiz.name }} ({{ quiz.categories.name }} - {{ quiz.disciplines.name }})</span>
+    <span *ngIf="quickData">Hitri Kviz</span>
+  </h3>
+</div>
+
+<div class="card" > <!-- [ngClass]="{'text-uppercase': params?.categorie === categories.Pionirji}" -->
+  <div class="card-header text-capitalize">
+    <span *ngIf="quiz && !quickData">{{ quiz.name }} ({{ quiz.categories.name }} - {{ quiz.disciplines.name }})</span>
+    <span *ngIf="quickData">Hitri Kviz</span>
+
+    <div class="float-end">
+      {{ currentIndex+1 }} / {{ questions?.length }}
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <div *ngIf="!endQuiz && questions[currentIndex]">
+      <app-question [question]="questions[currentIndex]"
+        [currentIndex]="currentIndex"
+        [confirmed]="confirmed"
+        [showQNumber]="false"
+        ></app-question>
+    </div>
+
+    <div *ngIf="endQuiz">
+      <h2 class="card-title">Konec!</h2>
+      <hr>
+      <p class="card-text">Dosegel/a si
+        <span class="h2"
+          [ngClass]="{
+            'text-success': quiz.points > (questions.length*2)/3,
+            'text-warning': quiz.points >= questions.length/2 && quiz.points <= (questions.length*2)/3,
+            'text-danger': quiz.points < questions.length/2
+          }">
+            {{ quiz.points }}
+          </span>
+            točk od
+          {{ questions.length }}!
+      </p>
+      <button class="btn btn-link btn-sm" (click)="showQuestions = !showQuestions">
+        <span *ngIf="!showQuestions">Prikaži vsa vprašanja</span>
+        <span *ngIf="showQuestions">Skrij vsa vprašanja</span>
+      </button>
+
+      <div class="pt-3 pb-3" *ngIf="showQuestions">
+        <hr>
+          <app-end-questions
+            [questions]="questions">
+          </app-end-questions>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+
+    <div class="float-start" *ngIf="confirmed">
+      <div class="col-md-12 text-capitalize status-text">
+        <div *ngIf="questions[currentIndex].userAnswerCorrect" class="text-success">
+          Pravilni odgovor!</div>
+        <div *ngIf="!questions[currentIndex].userAnswerCorrect" class="text-danger">
+          Napačni odgovor!</div>
+      </div>
+    </div>
+
+    <div class="float-end" *ngIf="!endQuiz">
+      <button type="button" class="btn btn-primary" (click)="confirmQuestion()" [disabled]="!isSelected()"
+        *ngIf="!confirmed">Potrdi</button>
+      <button type="button" class="btn btn-success" (click)="nextQuestion()"
+        *ngIf="confirmed">
+        <i class="fas fa-play-circle fa-lg" aria-hidden="true"></i>
+        Naprej
+      </button>
+    </div>
+
+    <div class="float-end" *ngIf="endQuiz">
+      <a [routerLink]="'/quiz/dashboard'" type="button" class="btn btn-secondary">Nazaj</a>
+    </div>
+  </div>
+</div>
+
+<div class="p-3 pb-md-4 mx-auto" *ngIf="quiz">
+  <div class="row" *ngIf="counter">
+    <div class="col-md-12">
+      Preostali čas: {{ counter*1000 | date : 'HH:mm:ss':'utc' }}
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-12">
+      <b>Statistika: </b>
+      <div>
+        Dosežene točke: {{ quiz.points }} / {{ questions.length }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,8 +2,8 @@ import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/co
 import { InjectRepository } from '@nestjs/typeorm';
 import { MoreThan, Repository } from 'typeorm';
 
-import { DbUsers } from '@libs/api-interfaces/db-entities';
-import { User, UserRanks, UserUpdate } from '@libs/api-interfaces/index';
+import { DbUsers } from '@libs/app-entities';
+import { User, UserRanks, UserUpdate } from '@libs/app-interfaces/data';
 
 import { TokensService } from './tokens.service';
 import { environment } from '@environment';
@@ -29,7 +29,9 @@ export class UsersService {
   }
 
   async getSingleById(id: number) {
-    return await this.usersRepository.findOne(id);
+    return await this.usersRepository.findOne({
+      where: { id }
+    });
     // return await this.findUser(id);
   }
 
@@ -43,8 +45,10 @@ export class UsersService {
 
   async getMainAdminUser() {
     return await this.usersRepository.findOne({
-      username: environment.adminUser.name,
-      id: environment.adminUser.id
+      where: {
+        username: environment.adminUser.name,
+        id: environment.adminUser.id
+      }
     });
   }
 
@@ -122,7 +126,7 @@ export class UsersService {
   private async findUserByUsername(username: string, exists=true) {
 
     const user = await this.usersRepository.findOne({
-      username
+      where: { username }
     });
 
     if (!user && exists) throw new NotFoundException(`Could not find user by username: ${username}`);

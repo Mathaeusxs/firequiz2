@@ -1,0 +1,147 @@
+<!-- Template -->
+<ng-template #formFieldsGeneral>
+
+  <div class="form" [formGroup]="form">
+    <div class="row align-items-center">
+      <div class="col-md-12">
+        <app-b-custom-input [control]="getControl('name')" label="{{ 'form.fields.name' | translate }}" [focus]='true'></app-b-custom-input>
+      </div>
+    </div>
+
+    <div class="row align-items-center mt-1">
+      <div class="col-md-6">
+        <app-b-custom-input [control]="getControl('email')" label="{{ 'users.form.fields.email' | translate }}"></app-b-custom-input>
+      </div>
+      <div class="col-md-6">
+        <app-b-custom-input [control]="getControl('rank')" label="{{ 'users.form.fields.rank' | translate }}">
+          <div inputContent>
+            <p-dropdown formControlName="rank"
+              [options]="UserRanksList" styleClass="w-100"
+              appendTo="body"
+              placeholder="{{ 'users.form.fields.rank' | translate }}">
+              <ng-template let-item pTemplate="selectedItem">
+                <div>{{ 'users.ranks.'+item | translate }}</div>
+              </ng-template>
+              <ng-template let-item pTemplate="item">
+                <div>{{ 'users.ranks.'+item | translate }}</div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+        </app-b-custom-input>
+      </div>
+    </div>
+
+    <div class="row align-items-center mt-1">
+      <div class="col-md-8">
+        <app-b-custom-input [control]="getControl('username')" label="{{ 'users.form.fields.username' | translate }}"></app-b-custom-input>
+      </div>
+      <div class="col-md-4">
+        <app-b-custom-input [control]="getControl('active')" label="{{ 'form.fields.active' | translate }}">
+          <div inputContent>
+            <p-inputSwitch class="form-control-plaintext" formControlName='active'></p-inputSwitch>
+          </div>
+        </app-b-custom-input>
+      </div>
+    </div>
+
+    <div class="row align-items-center mt-1" *ngIf="editMode && (editData.id === mainService.currentUser.id || mainService.currentUser.rank == UserRanks.SuperAdmin)">
+      <div class="col-md-4">
+        <app-b-custom-input [control]="getControl('passwordChange')" label="{{ 'users.form.fields.changePassword' | translate }}">
+          <div inputContent>
+            <p-inputSwitch class="form-control-plaintext" formControlName='passwordChange' (onChange)="passwordChangeToggle(getControl('passwordChange').value)" ></p-inputSwitch>
+          </div>
+        </app-b-custom-input>
+      </div>
+    </div>
+
+    <div *ngIf="!editMode || getControl('passwordChange').value">
+      <div class="row align-items-center mt-1">
+        <div class="col-md-12">
+          <app-b-custom-input [control]="getControl('password')" label="{{ 'users.form.fields.password' | translate }}" type="password"></app-b-custom-input>
+        </div>
+      </div>
+
+      <div class="row align-items-center mt-1">
+        <div class="col-md-12">
+          <app-b-custom-input [control]="getControl('passwordConfirm')" label="{{ 'users.form.fields.confirmPassword' | translate }}" type="password"></app-b-custom-input>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #formFields>
+  <div [ngSwitch]="tabsView">
+    <div *ngSwitchCase="true">
+      <p-tabView>
+        <p-tabPanel header="{{ 'form.general' | translate }}">
+          <ng-container [ngTemplateOutlet]="formFieldsGeneral"></ng-container>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+    <div *ngSwitchCase="false">
+      <ng-container [ngTemplateOutlet]="formFieldsGeneral"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #compoHeader>
+  <span *ngIf="!editMode">{{ 'users.form.titleNew' | translate }}</span>
+  <span *ngIf="editMode">{{ 'users.form.titleEdit' | translate }}</span>
+</ng-template>
+
+<ng-template #formButtons>
+  <button pButton label="{{ 'cancel' | translate }}" icon="pi pi-times" class="p-button-secondary me-md-2" (click)="cancelEmit()"></button>
+  <button pButton label="{{ 'save' | translate }}" icon="pi pi-check" class="p-button-success" [disabled]="form.invalid" (click)="saveEmit()"></button>
+</ng-template>
+
+<ng-container [ngSwitch]="dialogMode">
+  <div *ngSwitchCase="true">
+    <p-dialog [(visible)]="showEditDialog" [modal]="true" styleClass="p-fluid col-md-5" appendTo="body">
+      <ng-template pTemplate="header">
+        <h4>
+          <ng-template [ngTemplateOutlet]="compoHeader"></ng-template>
+        </h4>
+      </ng-template>
+
+      <ng-template pTemplate="content">
+        <ng-template [ngTemplateOutlet]="formFields"></ng-template>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <ng-template [ngTemplateOutlet]="formButtons"></ng-template>
+       </ng-template>
+    </p-dialog>
+  </div>
+
+  <div *ngSwitchCase="false">
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+
+          <div class="card-header border-0">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="mb-0">
+                  <ng-template [ngTemplateOutlet]="compoHeader"></ng-template>
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <ng-template [ngTemplateOutlet]="formFields"></ng-template>
+          </div>
+
+          <div class="card-footer border-0 ">
+            <div class="float-end">
+              <ng-template [ngTemplateOutlet]="formButtons"></ng-template>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+

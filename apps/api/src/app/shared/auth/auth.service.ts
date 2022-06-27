@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as moment from 'moment';
 import * as bcrypt from 'bcrypt';
 
-import { RefreshTokenPayload, TokenPayload, User } from '@libs/api-interfaces/index';
+import { RefreshTokenPayload, TokenPayload, User } from '@libs/app-interfaces/data';
 
 import { UsersService } from '@api/endpoints/users/users.service';
 import { TokensService } from '@api/endpoints/users/tokens.service';

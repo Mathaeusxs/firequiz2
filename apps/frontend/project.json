@@ -13,9 +13,18 @@
         "polyfills": "apps/frontend/src/polyfills.ts",
         "tsConfig": "apps/frontend/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/frontend/src/favicon.ico", "apps/frontend/src/assets"],
-        "styles": ["apps/frontend/src/styles.scss"],
-        "scripts": []
+        "assets": [
+          "apps/frontend/src/favicon.ico",
+          "apps/frontend/src/assets",
+          "apps/frontend/src/.htaccess"
+        ],
+        "styles": [
+          "node_modules/bootstrap/dist/css/bootstrap.css",
+          "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
+          "node_modules/primeng/resources/primeng.min.css",
+          "node_modules/primeicons/primeicons.css",
+          "apps/frontend/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -62,7 +71,9 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "proxyConfig": "apps/frontend/proxy.conf.json"
+        "browserTarget": "frontend:build:development",
+        "proxyConfig": "apps/frontend/proxy.conf.json",
+        "host": "localhost"
       }
     },
     "extract-i18n": {

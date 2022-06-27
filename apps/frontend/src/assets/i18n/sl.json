@@ -1,0 +1,248 @@
+{
+  "close": "Zapri",
+  "save": "Shrani",
+  "cancel": "Prekliči",
+  "confirm": "Potrdi",
+  "proceed": "Naprej",
+  "delete": "Izbriši",
+  "edit": "Uredi",
+  "discard": "Zavrži",
+  "discardChanges": "Zavrži spremembe",
+  "settings": "Nastavitve",
+  "generalError": "Nekaj je šlo narobe!",
+
+  "toast": {
+    "title": {
+      "success": "Uspešno",
+      "error": "Napaka",
+      "warning": "Opozorilo",
+      "info": "Informacija"
+    },
+    "form": {
+      "new": "Uspešno ustvarjeno.",
+      "edit": "Uspešno urejeno.",
+      "delete": "Uspešno izbrisano."
+    }
+  },
+
+  "quiz": {
+
+  },
+
+  "users": {
+    "name": "User",
+    "nameMulti": "Users",
+    "form": {
+      "titleNew": "Create new user",
+      "titleEdit": "User details",
+      "fields": {
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "changePassword": "Change password",
+        "email": "Email",
+        "username": "Username",
+        "rank": "Rank"
+      },
+      "messages": {
+        "new": "New user successfully created.",
+        "edit": "User successfully changed.",
+        "delete": "User successfully deleted."
+      },
+      "delete": {
+        "popup": {
+          "message": "Do you want to delete user <b> {{ name }} </b> ?"
+        }
+      }
+    },
+    "ranks": {
+      "10": "User",
+      "20": "Admin",
+      "30": "SuperAdmin"
+    }
+  },
+
+  "disciplines": {
+    "name": "Disciplina",
+    "nameMulti": "Discipline",
+    "form": {
+      "titleNew": "Ustvari novo disciplino",
+      "titleEdit": "Podrobnosti discipline",
+      "fields": {
+      },
+      "messages": {
+        "new": "Nova disciplina uspešno ustvarjena.",
+        "edit": "Disciplina uspešno spremenjena.",
+        "delete": "Disciplina uspešno izbrisana."
+      },
+      "delete": {
+        "popup": {
+          "message": "Ali želite izbirsati disciplino <b> {{ name }} </b> ?"
+        }
+      }
+    }
+  },
+
+  "categories": {
+    "name": "Kategorija",
+    "nameMulti": "Kategorije",
+    "form": {
+      "titleNew": "Ustvari novo kategorijo",
+      "titleEdit": "Podrobnosti kategorije",
+      "fields": {
+      },
+      "messages": {
+        "new": "Nova kategorija uspešno ustvarjena.",
+        "edit": "Kategorija uspešno spremenjena.",
+        "delete": "Kategorija uspešno izbrisana."
+      },
+      "delete": {
+        "popup": {
+          "message": "Ali želite izbirsati kategorijo <b> {{ name }} </b> ?"
+        }
+      }
+    }
+  },
+
+  "quizzes": {
+    "name": "Kviz",
+    "nameMulti": "Kvizi",
+    "form": {
+      "titleNew": "Ustvari nov kviz",
+      "titleEdit": "Podrobnosti kviza",
+      "fields": {
+      },
+      "messages": {
+        "new": "Nov kviz uspešno ustvarjen.",
+        "edit": "Kviz uspešno spremenjen.",
+        "delete": "Kviz uspešno izbrisan."
+      },
+      "delete": {
+        "popup": {
+          "message": "Ali želite izbirsati kviz <b> {{ name }} </b> ?"
+        }
+      }
+    }
+  },
+
+  "questions": {
+    "name": "Vprašanje",
+    "nameMulti": "Vprašanja",
+    "form": {
+      "titleNew": "Ustvari novo vprašanje",
+      "titleEdit": "Podrobnosti vprašanja",
+      "addAnswer": "Dodaj odgovor",
+      "fields": {
+        "type": "Tip",
+        "question": "Vprašanje",
+        "points": "Točke",
+        "correct": "Pravilno",
+        "answer": "Odgovor"
+      },
+      "messages": {
+        "new": "Novo vprašanje uspešno ustvarjeno.",
+        "edit": "Vprašanje uspešno spremenjeno.",
+        "delete": "Vprašanje uspešno izbrisano.",
+        "needOneCorrect": "Vsaj eno vprašanje mora biti označeno kot pravilno!"
+      },
+      "delete": {
+        "popup": {
+          "message": "Ali želite izbirsati vprašanje ?"
+        }
+      }
+    }
+  },
+
+  "form": {
+    "titleNew": "Ustvari",
+    "titleEdit": "Podrobnosti",
+    "create": "Ustvari",
+    "createNew": "Ustvari novo",
+    "showAll": "Prikaži vse",
+    "add": "Dodaj",
+    "new": "Nov",
+    "edit": "Uredi",
+    "search": "Išči",
+    "general": "Generalno",
+    "from": "Od",
+    "to": "Do",
+    "find": "Najdi",
+    "fields": {
+      "id": "Id",
+      "desc": "Opis",
+      "active": "Aktivno",
+      "name": "Ime",
+      "modified": "Spremenjeno",
+      "time": "Čas",
+      "created": "Ustvarjeno",
+      "modifiedBy": "Spremenil"
+    },
+    "validation": {
+        "required": "Ta vrednost je obvezna!",
+        "minlength": "Besedilo je prekratko!",
+        "invalid": "Neveljavna vrednost!",
+        "valid": "",
+        "mustmatch": "Besedilo se ne ujema.",
+        "pattern": "Neveljavni zapis!",
+        "maxlength": "Besedilo je predolgo.",
+        "max": "Vrednost je prevelika.",
+        "min": "Vrednost je premajhna.",
+        "email": "Besedilo ni veljavni enaslov.",
+        "exist": "Ta vrednost že obstaja."
+    },
+    "buttons": {
+    },
+    "delete": {
+      "popup": {
+        "title": "Potrdi izbris",
+        "message": "Ali res želite izbrisati postavko ?"
+      }
+    }
+  },
+
+  "primeng": {
+    "startsWith": "Začne z",
+    "contains": "Vsebuje",
+    "notContains": "Ne vsebuje",
+    "endsWith": "Konča z",
+    "equals": "Enako",
+    "notEquals": "Ni enako",
+    "noFilter": "Ni filtra",
+    "lt": "Manj",
+    "lte": "Manj ali enako ",
+    "gt": "Večje",
+    "gte": "Večje ali enako",
+    "is": "Je",
+    "isNot": "Ni",
+    "before": "Pred",
+    "after": "Za",
+    "dateIs": "Datum je",
+    "dateIsNot": "Datum ni",
+    "dateBefore": "Datum je pred",
+    "dateAfter": "Datum je za",
+    "clear": "Počisti",
+    "apply": "Potrdi",
+    "matchAll": "Ujemanje vse",
+    "matchAny": "Ujemanje poljubno",
+    "addRule": "Dodaj pravilo",
+    "removeRule": "Odstrani pravilo",
+    "accept": "Da",
+    "reject": "Ne",
+    "choose": "Izberi",
+    "upload": "Naloži",
+    "cancel": "Prekliči",
+    "dayNames": ["Nedelja", "Ponedeljek", "Torek", "Sreda", "Četrtek", "Petek", "Sobota"],
+    "dayNamesShort": ["Ned", "Pon", "Tor", "Sre", "Čet", "Pet", "Sob"],
+    "dayNamesMin": ["Ne","Po","To","Sr","Če","Pe","So"],
+    "monthNames": ["Januar","Feburar","Marec","April","Maj","Junij","Julij","Avgust","September","Oktober","November","December"],
+    "monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun","Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+    "dateFormat": "dd.mm.yy",
+    "today": "Danek",
+    "weekHeader": "Ted",
+    "weak": "Šibko",
+    "medium": "Srednje",
+    "strong": "Močno",
+    "passwordPrompt": "Vnesite geslo",
+    "emptyMessage": "Ni rezultatov",
+    "emptyFilterMessage": "Ni najdenih rezultatov"
+  }
+}

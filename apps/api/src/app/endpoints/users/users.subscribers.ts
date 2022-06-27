@@ -6,9 +6,9 @@ import {
   InsertEvent,
   UpdateEvent,
 } from 'typeorm';
-import * as bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcrypt';
 
-import { DbUsers } from '@libs/admin-db-models/entities';
+import { DbUsers } from '@libs/app-entities';
 import { UserUpdate } from '@libs/app-interfaces/data';
 
 @EventSubscriber()

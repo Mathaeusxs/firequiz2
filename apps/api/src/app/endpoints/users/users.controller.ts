@@ -1,12 +1,12 @@
 import { Controller, Get, Param, Post, Body, Put, Delete, Patch, UseGuards, UseInterceptors, Query } from '@nestjs/common';
-import { User, UserUpdate } from '@libs/api-interfaces/index';
-
-import { ApiEndpoints } from '@libs/api-interfaces/index';
+import { User, UserUpdate } from '@libs/app-interfaces/data';
+import { ApiEndpoints } from '@libs/app-interfaces/api';
 
 import { JwtAuthGuard } from '@api/shared/auth/guards/jwt-auth.guard';
+import { AddModUserInterceptor } from '@api/guards/add-moduser.interceptor';
 
 import { UsersService } from './users.service';
-import { AddModUserInterceptor } from '@api/guards/add-moduser.interceptor';
+
 
 @Controller(ApiEndpoints.Users)
 export class UsersController {

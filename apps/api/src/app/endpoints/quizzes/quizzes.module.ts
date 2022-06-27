@@ -2,7 +2,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { DbQuiz } from '@libs/api-interfaces/db-entities';
+import { DbQuiz } from '@libs/app-entities';
 
 import { AddModUserInterceptor } from '@api/guards/add-moduser.interceptor';
 

@@ -6,7 +6,7 @@ import {
   UpdateEvent,
 } from 'typeorm';
 
-import { DbQuiz } from '@libs/api-interfaces/db-entities';
+import { DbQuiz } from '@libs/app-entities';
 
 @EventSubscriber()
 export class DbQuizzesSubscriber implements EntitySubscriberInterface<DbQuiz> {

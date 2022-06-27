@@ -1,9 +1,9 @@
-
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MoreThan, Repository } from 'typeorm';
 
-import { DbCategories, Categorie } from '@libs/api-interfaces/index';
+import { Categorie } from '@libs/app-interfaces/data';
+import { DbCategories } from '@libs/app-entities';
 
 @Injectable()
 export class CategoriesService {
@@ -13,34 +13,28 @@ export class CategoriesService {
   ) {
   }
 
-  /** GET LIST / ITEM **/
-  async getAll() {
-    return await this.catRepository.find();
+  get repository() {
+    return this.catRepository;
   }
 
-  async getSingleById(id: number) {
-    return await this.catRepository.findOne({
-      where: { id }
+  /** GET LIST / ITEM **/
+  async getAll(modUser = false) {
+    return await this.catRepository.find({
+      relations: this.setRelations([], { modUser })
     });
   }
 
-  async checkModified(id: number, modDate: Date){
-    return await this.catRepository.findOne(
-      {
-        where:{
-          id,
-          modified: MoreThan(modDate)
-        },
-        relations:['modUser']
-      }
-    )
+  async getSingleById(id: number, modUser = false) {
+    return await this.catRepository.findOne({
+      where: { id },
+      relations: this.setRelations([], { modUser })
+    });
   }
 
   // CREATE / EDIT
   async save(data: Categorie) {
     return await this.catRepository.save(data);
   }
-
 
   async update(id: number, data: Categorie) {
     const item = await this.getSingleById(id);
@@ -69,5 +63,10 @@ export class CategoriesService {
     })
     if (!item && exist) throw new NotFoundException(`Could not find by ${field}: ${value}`);
     return item;
+  }
+
+  private setRelations(relations: string[] = [], props: { [key in string]: boolean }) {
+    if (props.modUser) relations.push('modUser')
+    return relations;
   }
 }

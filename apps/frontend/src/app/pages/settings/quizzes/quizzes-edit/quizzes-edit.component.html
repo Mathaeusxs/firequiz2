@@ -1,0 +1,140 @@
+<!-- Template -->
+<ng-template #formFieldsGeneral>
+  <div class="form" [formGroup]="form">
+
+    <div class="row align-items-center">
+      <div class="col-md-12">
+        <app-b-custom-input [control]="getControl('name')" label="{{ 'form.fields.name' | translate }}" [focus]='true'></app-b-custom-input>
+      </div>
+    </div>
+
+    <div class="row align-items-center mt-1">
+      <div class="col-md-6">
+        <app-b-custom-input [control]="getControl('categoriesId')" label="{{ 'categories.name' | translate }}">
+          <div inputContent>
+            <p-dropdown formControlName="categoriesId"
+              [options]="categories$ | async" styleClass='w-100'
+              optionValue="id" optionLabel="name" placeholder="{{ 'categories.name' | translate }}">
+            </p-dropdown>
+          </div>
+        </app-b-custom-input>
+      </div>
+      <div class="col-md-6">
+        <app-b-custom-input [control]="getControl('disciplinesId')" label="{{ 'disciplines.name' | translate }}">
+          <div inputContent>
+            <p-dropdown formControlName="disciplinesId"
+              [options]="disciplines$ | async" styleClass='w-100'
+              optionValue="id" optionLabel="name" placeholder="{{ 'disciplines.name' | translate }}">
+            </p-dropdown>
+          </div>
+        </app-b-custom-input>
+      </div>
+    </div>
+
+    <div class="row align-items-center mt-1">
+      <div class="col-md-2">
+        <app-b-custom-input [control]="getControl('active')" label="{{ 'form.fields.active' | translate }}">
+          <div inputContent>
+            <p-inputSwitch class="form-control-plaintext" formControlName='active'></p-inputSwitch>
+          </div>
+        </app-b-custom-input>
+      </div>
+    </div>
+
+    <ng-container *ngIf="editMode">
+      <div class="row align-items-center mt-1">
+        <label class="col-sm-4 col-form-label">{{ 'form.fields.created' | translate }}</label>
+        <div class="col-sm-8">
+          <input type="text" readonly class="form-control-plaintext" value="{{ editData.created | date: 'dd.MM.YYYY, HH:mm' }}">
+        </div>
+      </div>
+      <div class="row align-items-center mt-1">
+        <label class="col-sm-4 col-form-label">{{ 'form.fields.modified' | translate }}</label>
+        <div class="col-sm-8">
+          <input type="text" readonly class="form-control-plaintext" value="{{ editData.modified | date: 'dd.MM.YYYY, HH:mm' }}">
+        </div>
+      </div>
+      <div class="row align-items-center mt-1">
+        <label class="col-sm-4 col-form-label">{{ 'form.fields.modifiedBy' | translate }}</label>
+        <div class="col-sm-8">
+          <input type="text" readonly class="form-control-plaintext" [value]="editData.modUser?.name">
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #formFields>
+  <div [ngSwitch]="tabsView">
+    <div *ngSwitchCase="true">
+      <p-tabView>
+        <p-tabPanel header="{{ 'form.general' | translate }}">
+          <ng-container [ngTemplateOutlet]="formFieldsGeneral"></ng-container>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+    <div *ngSwitchCase="false">
+      <ng-container [ngTemplateOutlet]="formFieldsGeneral"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #compoHeader>
+  <span *ngIf="!editMode">{{ 'quizzes.form.titleNew' | translate }}</span>
+  <span *ngIf="editMode">{{ 'quizzes.form.titleEdit' | translate }}</span>
+</ng-template>
+
+<ng-template #formButtons>
+  <button pButton label="{{ 'cancel' | translate }}" icon="pi pi-times" class="p-button-secondary me-md-2" (click)="cancelEmit()"></button>
+  <button pButton label="{{ 'save' | translate }}" icon="pi pi-check" class="p-button-success" [disabled]="form.invalid" (click)="saveEmit()"></button>
+</ng-template>
+
+
+<ng-container [ngSwitch]="dialogMode">
+  <div *ngSwitchCase="true">
+    <p-dialog [(visible)]="showEditDialog" [modal]="true" styleClass="p-fluid col-md-5" appendTo="body">
+      <ng-template pTemplate="header">
+        <h4>
+          <ng-template [ngTemplateOutlet]="compoHeader"></ng-template>
+        </h4>
+      </ng-template>
+
+      <ng-template pTemplate="content">
+        <ng-template [ngTemplateOutlet]="formFields"></ng-template>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <ng-template [ngTemplateOutlet]="formButtons"></ng-template> </ng-template>
+    </p-dialog>
+  </div>
+
+  <div *ngSwitchCase="false">
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+
+          <div class="card-header border-0">
+            <div class="row align-items-center">
+              <div class="col">
+                <h3 class="mb-0">
+                  <ng-template [ngTemplateOutlet]="compoHeader"></ng-template>
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <ng-template [ngTemplateOutlet]="formFields"></ng-template>
+          </div>
+
+          <div class="card-footer border-0 ">
+            <div class="float-end">
+              <ng-template [ngTemplateOutlet]="formButtons"></ng-template>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

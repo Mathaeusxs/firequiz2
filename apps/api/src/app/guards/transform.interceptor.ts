@@ -2,7 +2,7 @@ import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nes
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ApiResponse } from '@libs/api-interfaces/api';
+import { ApiResponse } from '@libs/app-interfaces/api';
 
 @Injectable()
 export class TransformInterceptor implements NestInterceptor<ApiResponse> {

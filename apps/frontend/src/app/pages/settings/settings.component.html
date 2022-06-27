@@ -1,0 +1,33 @@
+<div class="mb-2">
+
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="">
+        <ul class="nav nav-pills ">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'categories'" [routerLinkActive]="'active'">{{ 'categories.nameMulti' | translate }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'disciplines'" [routerLinkActive]="'active'">{{ 'disciplines.nameMulti' | translate }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'quizzes'" [routerLinkActive]="'active'">{{ 'quizzes.nameMulti' | translate }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'questions'" [routerLinkActive]="'active'">{{ 'questions.nameMulti' | translate }}</a>
+          </li>
+<!--           <li class="nav-item">
+            <a class="nav-link" [routerLink]="'users'" [routerLinkActive]="'active'">{{ 'users.nameMulti' | translate }}</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+
+</div>
+
+<div class="mt--7">
+  <router-outlet></router-outlet>
+</div>
+
+<app-toast></app-toast>
+<p-confirmDialog></p-confirmDialog>

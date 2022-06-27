@@ -1,0 +1,50 @@
+<div class="login-wrapper">
+
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <div class="card bg-secondary shadow border-0">
+          <div class="card-body">
+
+            <div class='text-center mb-2'>
+              <h1 class="title-text">Gasilski kviz - prijava</h1>
+            </div>
+
+            <form role="form" [formGroup]="form" (ngSubmit)="formLogin()">
+              <div class="form-group mb-3">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="pi pi-user"></i></span>
+                  <input class="form-control" placeholder="Username" type="username" id='username' formControlName='username' autofocus>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="pi pi-lock"></i></span>
+                  <input class="form-control" placeholder="Password" type="password" id='password' formControlName='password'>
+                </div>
+              </div>
+
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary my-4" [disabled]="form.invalid">Sign in</button>
+              </div>
+              <div class="text-center" *ngIf="loading">
+                <div class="fa-3x">
+                  <i class="fas fa-spinner fa-spin"></i>
+                </div>
+              </div>
+
+              <div class="text-center" *ngIf="errorMessage">
+                <div class="alert alert-danger" role="alert">
+                  <span class="alert-text">{{ errorMessage }}</span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+
+

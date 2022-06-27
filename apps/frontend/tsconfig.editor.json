@@ -2,6 +2,19 @@
   "extends": "./tsconfig.json",
   "include": ["**/*.ts"],
   "compilerOptions": {
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "paths": {
+      "@environment": ["apps/frontend/src/environments/environment"],
+      "@app/core/*": ["apps/frontend/src/app/core/*"],
+      "@app/layouts/*": ["apps/frontend/src/app/layouts/*"],
+      "@app/guards/*": ["apps/frontend/src/app/guards/*"],
+      "@app/helpers/*": ["apps/frontend/src/app/helpers/*"],
+      "@app/services/*": ["apps/frontend/src/app/services/*"],
+      "@app/shared/*": ["apps/frontend/src/app/shared/*"],
+      "@libs/app-entities": ["libs/app-entities/src/index.ts"],
+      "@libs/app-interfaces/*": ["libs/app-interfaces/src/*"]
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
   }
 }
