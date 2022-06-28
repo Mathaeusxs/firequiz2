@@ -8,6 +8,7 @@
           <div inputContent>
             <p-dropdown formControlName="quizId"
               [options]="quizzes$ | async" styleClass='w-100'
+              appendTo="body"
               optionValue="id" optionLabel="name" placeholder="{{ 'quizzes.name' | translate }}">
             </p-dropdown>
           </div>

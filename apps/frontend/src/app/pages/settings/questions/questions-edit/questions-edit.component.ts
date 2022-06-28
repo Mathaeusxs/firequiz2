@@ -115,6 +115,13 @@ export class QuestionsEditComponent implements OnInit {
   newItem() {
     this.form.reset(DefaultQuestion);
     this.getAnswersFromArray().clear();
+
+    // AutoAdd some answers
+    this.addAnswer();
+    this.getAnswersFromArray().controls[0].patchValue({ correct: true })
+    this.addAnswer();
+    this.addAnswer();
+
     this.editMode = false;
     this.openDialog();
   }

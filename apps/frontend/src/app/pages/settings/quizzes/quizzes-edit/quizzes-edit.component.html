@@ -14,6 +14,7 @@
           <div inputContent>
             <p-dropdown formControlName="categoriesId"
               [options]="categories$ | async" styleClass='w-100'
+              appendTo="body"
               optionValue="id" optionLabel="name" placeholder="{{ 'categories.name' | translate }}">
             </p-dropdown>
           </div>
@@ -24,6 +25,7 @@
           <div inputContent>
             <p-dropdown formControlName="disciplinesId"
               [options]="disciplines$ | async" styleClass='w-100'
+              appendTo="body"
               optionValue="id" optionLabel="name" placeholder="{{ 'disciplines.name' | translate }}">
             </p-dropdown>
           </div>
